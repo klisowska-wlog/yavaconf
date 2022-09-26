@@ -12,6 +12,7 @@
     <modules>
         <module>java-consumer</module>
         <module>java-producer</module>
+        <module>spring</module>
     </modules>
 
     <dependencies>

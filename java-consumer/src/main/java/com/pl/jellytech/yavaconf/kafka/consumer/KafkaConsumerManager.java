@@ -45,9 +45,7 @@ public class KafkaConsumerManager {
 					logger.debug("Record retrieved: Key: {}, value: {}, partition: {}, offset: {})",
 							record.key(), record.value(),
 							record.partition(), record.offset());
-					logger.info("Record retrieved: Key: {}, value: {}", record.key(), record.value());
 				});
-				consumer.commitSync();
 			}
 		}
 	}
