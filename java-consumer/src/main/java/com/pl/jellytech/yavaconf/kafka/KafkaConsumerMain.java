@@ -23,7 +23,9 @@ public class KafkaConsumerMain {
 		logger.info("Please provide group id to assign consumer to:");
 		String groupId = scanner.nextLine();
 
-		KafkaConsumer<String, String> consumer = KafkaConsumerManager.createConsumer(groupId);
+		logger.info("Do you want to read from the beginning? (y / n)");
+		boolean isEarliest = scanner.nextLine().equals("y");
+		KafkaConsumer<String, String> consumer = KafkaConsumerManager.createConsumer(groupId, isEarliest);
 		List<String> topics = Arrays.stream(topicsStr.split(",")).map(String::trim).collect(Collectors.toList());
 
 		KafkaConsumerManager.infinitelyConsume(consumer, topics);
