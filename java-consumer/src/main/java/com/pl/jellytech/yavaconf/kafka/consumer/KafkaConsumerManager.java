@@ -31,18 +31,19 @@ public class KafkaConsumerManager {
 		props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
 		props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, isEarliest ? "earliest" : "latest");
 
-		logger.info("Starting new consumer for group {}", groupId);
+		logger.debug("Starting new consumer for group {}", groupId);
 		return new KafkaConsumer<>(props);
 	}
 
 	public static void infinitelyConsume(KafkaConsumer<String, String> consumer, List<String> topics){
 		consumer.subscribe(topics);
 
+		logger.debug("Start listening to messages ...");
 		try (consumer) {
 			while (true) {
 				ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(1000));
 				records.forEach(record -> {
-					logger.debug("Record retrieved: Key: {}, value: {}, partition: {}, offset: {})",
+					logger.info("Record retrieved: Key: {}, value: {}, partition: {}, offset: {})",
 							record.key(), record.value(),
 							record.partition(), record.offset());
 				});

@@ -11,5 +11,10 @@ It's sufficient to run the following command from the project source directory (
 This will start a Zookeeper instance available at port _2182_ and 1 Kafka broker listening on port _9092_.
 
 ###Useful Kafka CLI commands
-`kafka-topics.sh --list --zookeeper localhost:2182`
+`kafka-topics.sh --bootstrap-server=:9092 --list`
+
 `kafka-broker-api-versions.sh --bootstrap-server=:9092 | grep 9092`
+
+`/bin/kafka-run-class.sh kafka.tools.GetOffsetShell \
+--broker-list :9092 \
+--topic <topicName>`

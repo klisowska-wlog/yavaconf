@@ -16,15 +16,22 @@
         </File>
     </Appenders>
     <Loggers>
-        <Logger name="com.pl.jellytech.yavaconf.kafka" level="debug" additivity="false">
+        <Logger name="com.pl.jellytech.yavaconf.kafka" level="DEBUG" additivity="false">
             <AppenderRef ref="ConsoleLogger"/>
             <AppenderRef ref="AppLogger"/>
         </Logger>
 
-        <Root level="INFO">
-            <AppenderRef ref="AppLogger"/>
+        <Logger name="org.apache.kafka.clients" level="DEBUG" additivity="false">
+            <AppenderRef ref="KafkaLogger"/>
+        </Logger>
+
+        <Logger name="org.apache.kafka.clients.producer.ProducerConfig" level="DEBUG" additivity="false">
             <AppenderRef ref="KafkaLogger"/>
             <AppenderRef ref="ConsoleLogger"/>
+        </Logger>
+
+        <Root level="INFO">
+            <AppenderRef ref="AppLogger"/>
         </Root>
     </Loggers>
 </Configuration>
